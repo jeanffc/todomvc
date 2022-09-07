@@ -25,7 +25,7 @@
 		// the root element that will be compiled
 		el: '.todoapp',
 
-		// app state data
+		// app initial state
 		data: {
 			todos: todoStorage.fetch(),
 			newTodo: '',
@@ -33,25 +33,11 @@
 			visibility: 'all'
 		},
 
-		// ready hook, watch todos change for data persistence
-		ready: function () {
-			this.$watch('todos', function (todos) {
-				todoStorage.save(todos);
-			}, { deep: true });
-		},
-
-		// a custom directive to wait for the DOM to be updated
-		// before focusing on the input field.
-		// http://vuejs.org/guide/directives.html#Writing_a_Custom_Directive
-		directives: {
-			'todo-focus': function (value) {
-				if (!value) {
-					return;
-				}
-				var el = this.el;
-				setTimeout(function () {
-					el.focus();
-				}, 0);
+		// watch todos change for localStorage persistence
+		watch: {
+			todos: {
+				deep: true,
+				handler: todoStorage.save
 			}
 		},
 
@@ -80,17 +66,23 @@
 		// note there's no DOM manipulation here at all.
 		methods: {
 
+			pluralize: function (word, count) {
+				return word + (count === 1 ? '' : 's');
+			},
+
 			addTodo: function () {
 				var value = this.newTodo && this.newTodo.trim();
 				if (!value) {
 					return;
 				}
-				this.todos.push({ title: value, completed: false });
+				// TODO: Use a proper UUID instead of `Date.now()`.
+				this.todos.push({ id: Date.now(), title: value, completed: false });
 				this.newTodo = '';
 			},
 
 			removeTodo: function (todo) {
-				this.todos.$remove(todo);
+				var index = this.todos.indexOf(todo);
+				this.todos.splice(index, 1);
 			},
 
 			editTodo: function (todo) {
@@ -116,6 +108,17 @@
 
 			removeCompleted: function () {
 				this.todos = filters.active(this.todos);
+			}
+		},
+
+		// a custom directive to wait for the DOM to be updated
+		// before focusing on the input field.
+		// http://vuejs.org/guide/custom-directive.html
+		directives: {
+			'todo-focus': function (el, binding) {
+				if (binding.value) {
+					el.focus();
+				}
 			}
 		}
 	});

@@ -59,7 +59,7 @@ https://github.com/documentcloud/backbone/blob/master/examples/todos/index.html
 				</div>
 			</header>
 			<section class="main">
-				<input class="check toggle-all" type="checkbox">
+				<input id="toggle-all" class="check toggle-all" type="checkbox">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list"></ul>
 			</section>
@@ -92,6 +92,17 @@ https://github.com/documentcloud/backbone/blob/master/examples/todos/index.html
 					<span class="word"><%= remaining == 1 ? 'item' : 'items' %></span> left
 				</span>
 			<% } %>
+			<ul class="filters">
+				<li>
+					<a class="selected" href="#/">All</a>
+				</li>
+				<li>
+					<a href="#/active">Active</a>
+				</li>
+				<li>
+					<a href="#/completed">Completed</a>
+				</li>
+			</ul>
 			<% if (completed) { %>
 				<span class="todo-clear">
 					<button class="clear-completed">Clear completed</button>

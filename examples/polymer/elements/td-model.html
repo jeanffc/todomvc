@@ -2,7 +2,7 @@
 <link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
 
 <dom-module id="td-model">
-	<template>
+	<template strip-whitespace>
 		<iron-localstorage name="todos-polymer" value="{{items}}"
 				on-iron-localstorage-load-empty="_initializeDefaultTodos"></iron-localstorage>
 	</template>
@@ -46,7 +46,7 @@
 				},
 
 				getActiveCount: function () {
-					return this.items.length - this.getCompletedCount(this.items);
+					return this.items ? (this.items.length - this.getCompletedCount(this.items)) : 0;
 				},
 
 				matchesFilter: function(item, filter) {

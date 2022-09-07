@@ -26,15 +26,27 @@
 	"excludeFiles": [
 		"**/node_modules/**",
 		"**/bower_components/**",
-		"examples/vanilladart/**/*.js",
-		"examples/duel/www/**",
-		"examples/duel/src/main/webapp/js/lib/**",
+		"**/generated/**",
 		"examples/ampersand/todomvc.bundle.js",
 		"examples/angular2/**/*.js",
-		"examples/polymer/elements/elements.build.js",
+		"examples/angular2_es2015/main.bundle.js",
+		"examples/aurelia/config.js",
+		"examples/aurelia/dist/*.js",
+		"examples/aurelia/jspm_packages/**/*.js",
+		"examples/binding-scala/js/*.js",
+		"examples/duel/www/**",
+		"examples/duel/src/main/webapp/js/lib/**",
+		"examples/emberjs/todomvc/dist/**/*.js",
+		"examples/emberjs/todomvc/testem.js",
+		"examples/emberjs/assets/**/*.js",
+		"examples/elm/build/elm.js",
+		"examples/elm/elm-stuff/**",
+		"examples/humble/js/**",
 		"examples/js_of_ocaml/js/*.js",
+		"examples/olives/olives-todo.js",
+		"examples/polymer/elements/elements.build.js",
 		"examples/typescript-*/js/**/*.js",
-		"**/generated/**"
+		"examples/vanilla-es6/dist/bundle.js"
 	],
 	"requireSpaceBeforeBlockStatements": true,
 	"requireParenthesesAroundIIFE": true,
@@ -77,5 +89,6 @@
 	"disallowKeywords": ["with"],
 	"disallowSpacesInsideObjectBrackets": null,
 	"disallowImplicitTypeConversion": ["string"],
-	"safeContextKeyword": "self"
+	"safeContextKeyword": "self",
+	"esnext": true
 }

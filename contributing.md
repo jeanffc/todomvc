@@ -1,13 +1,13 @@
 # Contribute
 
-We're happy to accept contributions in the form of new apps, bug fixes, issues and so on. If you want to help out, add a comment on the issue you want to work on and hack away!
+We're happy to accept contributions in the form of new apps, bug fixes, issues and so on. If you want to help out, add a comment on the issue you want to work on and hack away! Before starting work on an app intended for submission, please open an issue to discuss it with the team. This will allow us to review the framework being used to determine if a spec-compatible app is likely to be accepted.
 
-Note: Before starting work on an app intended for submission, please open an issue to discuss it with the team. This will allow us to review the framework being used to determine if a spec-compatible app is likely to be accepted.
+Please note that this project is released with a [Contributor Code of Conduct](code-of-conduct.md). By participating in this project you agree to abide by its terms.
 
 
 ## Considerations before submitting a new app
 
-TodoMVC is a curation, not a collection. We want make it easier for people to
+TodoMVC is a curation, not a collection. We want to make it easier for people to
 find a base for their web applications, not harder. This is why we can't accept
 every submission. However, we're always open to looking at novel ways to solve
 existing problems.
@@ -22,6 +22,13 @@ Please bear in mind that your project should have reached a certain level of
 maturity before we can include it. If you haven't settled on a relatively stable
 API, you should probably wait a bit longer before submitting your example.
 
+### A good app that we are looking for should check most if not all of the items below :
+
+- [x] The framework/stack you are using must have a version that is free and open source
+- [x] The framework/stack you are using is at least 1 year old.
+- [x] The framework you are using should have at least 5k stars if it is hosted on Github or equivalent on other platforms.
+- [x] Your app should be able to work on recent versions of all major browsers.
+- [x] Your app should bring something truly new to the table, minor variations of existing frameworks, languages or existing TodoMVC apps will not be accepted.
 
 ## Code Style
 
@@ -49,12 +56,12 @@ If the app breaks for a decent amount of time, we will (temporarily) remove it f
 
 ## Browser Compatibility
 
-Modern browser (latest: Chrome, Firefox, Opera, Safari, IE9)
+Modern browser (latest: Chrome, Firefox, Opera, Safari, IE11/Edge)
 
 
 ## Unit Tests
 
-At present, due to the large number of apps in the TodoMVC suite we haven't been mandating that unit tests be written in order for an application to be accepted.
+At present, due to a large number of apps in the TodoMVC suite, we haven't been mandating that unit tests be written in order for an application to be accepted.
 
 We do, however, plan on addressing this in a future release as we feel it would both help further ensure consistency and provide developers with a reference for writing tests for each framework.
 

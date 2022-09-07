@@ -7,27 +7,27 @@ var TodoMVC = TodoMVC || {};
 
 	var filterChannel = Backbone.Radio.channel('filter');
 
-	TodoMVC.RootLayout = Backbone.Marionette.LayoutView.extend({
+	TodoMVC.RootLayout = Mn.View.extend({
 
-		el: '#todoapp',
+		el: '.todoapp',
 
 		regions: {
-			header: '#header',
-			main: '#main',
-			footer: '#footer'
+			header: '.header',
+			main: '.main',
+			footer: '.footer'
 		}
 	});
 
 	// Layout Header View
 	// ------------------
-	TodoMVC.HeaderLayout = Backbone.Marionette.ItemView.extend({
+	TodoMVC.HeaderLayout = Mn.View.extend({
 
 		template: '#template-header',
 
 		// UI bindings create cached attributes that
 		// point to jQuery selected objects
 		ui: {
-			input: '#new-todo'
+			input: '.new-todo'
 		},
 
 		events: {
@@ -60,18 +60,18 @@ var TodoMVC = TodoMVC || {};
 
 	// Layout Footer View
 	// ------------------
-	TodoMVC.FooterLayout = Backbone.Marionette.ItemView.extend({
+	TodoMVC.FooterLayout = Mn.View.extend({
 		template: '#template-footer',
 
 		// UI bindings create cached attributes that
 		// point to jQuery selected objects
 		ui: {
-			filters: '#filters a',
+			filters: '.filters a',
 			completed: '.completed a',
 			active: '.active a',
 			all: '.all a',
-			summary: '#todo-count',
-			clear: '#clear-completed'
+			summary: '.todo-count',
+			clear: '.clear-completed'
 		},
 
 		events: {
@@ -82,7 +82,7 @@ var TodoMVC = TodoMVC || {};
 			all: 'render'
 		},
 
-		templateHelpers: {
+		templateContext: {
 			activeCountLabel: function () {
 				return (this.activeCount === 1 ? 'item' : 'items') + ' left';
 			}

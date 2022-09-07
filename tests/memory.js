@@ -1,4 +1,7 @@
+'use strict';
+
 var drool = require('drool');
+var exceptions = require('./memory-exceptions.json');
 var frameworkPathLookup = require('./framework-path-lookup');
 var argv = require('optimist').default('laxMode', false).default('browser', 'chrome').argv;
 var driverConfig = {
@@ -18,7 +21,7 @@ function idApp() {
 	.thenCatch(function () { return false; });
 }
 
-function newTodoSelector(name) {
+function newTodoSelector() {
 	return idApp().then(function (isId) {
 		if (isId) {
 			return '#new-todo';
@@ -28,7 +31,7 @@ function newTodoSelector(name) {
 	});
 }
 
-function listSelector(name) {
+function listSelector() {
 	return idApp().then(function (isId) {
 		if (isId) {
 			return '#todo-list li';
@@ -46,6 +49,7 @@ list.forEach(function (framework) {
 		},
 		action: function (name) {
 			driver.wait(function () {
+				driver.sleep(500);
 				return driver.findElement(drool.webdriver.By.css(newTodoSelector(name)))
 					.sendKeys('find magical goats', drool.webdriver.Key.ENTER)
 					.thenCatch(function () {
@@ -55,7 +59,7 @@ list.forEach(function (framework) {
 					return driver.findElement(drool.webdriver.By.css(listSelector(name))).isDisplayed()
 						.then(function () {
 							return true;
-						})
+						});
 				});
 			}, 10000);
 
@@ -74,20 +78,22 @@ list.forEach(function (framework) {
 		assert: function (after, initial) {
 			var nodeIncrease = (after.nodes - initial.nodes);
 			var listenerIncrease = (after.jsEventListeners - initial.jsEventListeners);
+			var memoryExceptions = exceptions[framework.name] || {};
+
 			console.log(this + ', ' +  nodeIncrease + ', ' +
 				(after.jsHeapSizeUsed - initial.jsHeapSizeUsed) + ', ' + listenerIncrease);
 
 			//https://code.google.com/p/chromium/issues/detail?id=516153
-			if (nodeIncrease > 5) {
+			if (nodeIncrease > memoryExceptions.nodes || 0) {
 				throw new Error('Node Count leak detected!');
 			}
 
-			if (listenerIncrease > 0) {
+			if (listenerIncrease > memoryExceptions.listeners || 0) {
 				throw new Error('Event Listener leak detected!');
 			}
 
 		}.bind(framework.name)
-	}, driver)
+	}, driver);
 });
 
 driver.quit();

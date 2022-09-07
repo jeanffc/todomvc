@@ -24,7 +24,7 @@ Here are some links you may find helpful:
 Articles and guides from the community:
 
 * [Thoughts on TypeScript](http://www.nczonline.net/blog/2012/10/04/thoughts-on-typescript)
-* [ScreenCast - Why I Like TypeScript](http://www.leebrimelow.com/why-i-like-typescripts)
+* [ScreenCast - Why I Like TypeScript](https://www.youtube.com/watch?v=Mh5VQVfWTbs)
 
 Get help from other TypeScript users:
 
@@ -69,12 +69,15 @@ A standalone TypeScript compiler is available on NPM.
 To compile the TypeScript in this project:
 
 	# from examples/typescript-react
-	$ tsc -p js
+	$ ./node_modules/typescript/bin/tsc -p ./js/
 
 To be able to run the output JS files in the browser:
 
 	# from examples/typescript-react
-	$ npm install -g browserify
-	$ browserify js/app.js -o js/bundle.js
+	$ ./node_modules/browserify/bin/cmd ./js/app.js -o ./js/bundle.js"
 
 To run the app, spin up an HTTP server (e.g. `python -m SimpleHTTPServer`) and visit http://localhost/.../myexample/.
+Alternatively you can run:
+
+	# from examples/typescript-react
+	$ npm run start
